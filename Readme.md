@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ирина Мирончук](https://up.htmlacademy.ru/javascript/20/user/1331163).
-* Наставник: `Неизвестно`.
+* Наставник: `Семён Якушев`.
 
 ---
 
