@@ -76,7 +76,7 @@ var renderPin = function (data) {
 
   pinImg.src = data.author.avatar;
   pinImg.alt = data.offer.title;
-  pin.style = 'left: ' + (data.location.x - pinWidth/2) + 'px; top: ' + (data.location.y - pinHeight) + 'px;';
+  pin.style = 'left: ' + (data.location.x - pinWidth / 2) + 'px; top: ' + (data.location.y - pinHeight) + 'px;';
 
   return pin;
 };
