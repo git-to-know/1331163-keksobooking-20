@@ -35,7 +35,7 @@ var pinWidth = 50;
 
 var generateData = function (count) {
   var data = [];
-  for (i = 0; i < count; i++) {
+  for (var i = 0; i < count; i++) {
     var x = getRandomNumber(0, 1200);
     var y = getRandomNumber(130, 630);
 
@@ -219,42 +219,24 @@ mapPinMain.addEventListener('mousedown', function (evt) {
 });
 
 
-// mapPinMain.addEventListener('keydown', function (evt) {
-//   if (evt.key === 'Enter') {
-//     pageActivate();
-//   }
-// });
-
-var MIN_TITLE_LENGTH = 30;
-var MAX_TITLE_LENGTH = 100;
-
 var adTitleInput = document.querySelector('#title');
 
 adTitleInput.addEventListener('invalid', function () {
   if (adTitleInput.validity.valueMissing) {
     adTitleInput.setCustomValidity('Обязательное поле');
+  } else if (adTitleInput.validity.tooShort) {
+    adTitleInput.setCustomValidity('Заголовок должен содержать минимум 30 символов');
+  } else if (adTitleInput.validity.tooLong) {
+    adTitleInput.setCustomValidity('Заголовок не должен превыщать 100 символов');
   } else {
     adTitleInput.setCustomValidity('');
   }
 });
-
-adTitleInput.addEventListener('input', function () {
-  var adTitleInputLength = adTitleInput.value.length;
-
-  if (adTitleInputLength < MIN_TITLE_LENGTH) {
-    adTitleInput.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - adTitleInputLength) + ' симв.');
-  } else if (adTitleInputLength > MAX_TITLE_LENGTH) {
-    adTitleInput.setCustomValidity('Удалите лишние ' + (adTitleInputLength - MAX_TITLE_LENGTH) + ' симв.');
-  } else {
-    adTitleInput.setCustomValidity('');
-  }
-});
-
 
 var adPriceInput = document.querySelector('#price');
 
-adPriceInput.addEventListener('invalid', function () {
-  if (adPriceInput.validity.tooLong) {
+adPriceInput.addEventListener('change', function () {
+  if (adPriceInput.validity > 1000000) {
     adPriceInput.setCustomValidity('Цена не должна превышать 1 000 000');
   } else if (adPriceInput.validity.valueMissing) {
     adPriceInput.setCustomValidity('Обязательное поле');
@@ -263,10 +245,9 @@ adPriceInput.addEventListener('invalid', function () {
   }
 });
 
-
 var adTypeOption = document.querySelector('#type');
 
-adTypeOption.addEventListener('change', function () {
+var priceCheck = function () {
   switch (adTypeOption.value) {
 
     case 'bungalo':
@@ -306,8 +287,11 @@ adTypeOption.addEventListener('change', function () {
       }
       break;
   }
-});
+};
+priceCheck();
 
+adTypeOption.addEventListener('change', priceCheck);
+adPriceInput.addEventListener('change', priceCheck);
 
 var adTimeIn = document.querySelector('#timein');
 var adTimeOut = document.querySelector('#timeout');
@@ -333,17 +317,27 @@ adTimeOut.addEventListener('change', function () {
 var adRooms = document.querySelector('#room_number');
 var adGuests = document.querySelector('#capacity');
 
-var validateRoomsAndGuestsAmount = function () {
-  if ((adRooms.value === '100' && !(adGuests.value === '0')) || (!(adRooms.value === '100') && (adGuests.value === '0'))) {
-    adRooms.setCustomValidity('100 комнат предназначены не для гостей');
-  } else {
-    adRooms.setCustomValidity('');
-  }
 
-  if ((adRooms.value > adGuests.value) || (adGuests.value > adRooms.value)) {
-    adRooms.setCustomValidity('Число комнат не может быть меньше количества гостей');
-  } else {
-    adRooms.setCustomValidity('');
+var validateRoomsAndGuestsAmount = function () {
+  var rooms = parseInt(adRooms.value, 10);
+  var guests = parseInt(adGuests.value, 10);
+  switch (rooms) {
+    case 100:
+      if (guests !== 0) {
+        adRooms.setCustomValidity('100 комнат предназначены не для гостей');
+      } else {
+        adRooms.setCustomValidity('');
+      }
+      break;
+    default:
+      if (!guests) {
+        adRooms.setCustomValidity('Выберите количество мест');
+      } else if (rooms >= guests) {
+        adRooms.setCustomValidity('');
+      } else {
+        adRooms.setCustomValidity('Комнат меньше чем гостей');
+      }
+      break;
   }
 };
 
