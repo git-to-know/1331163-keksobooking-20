@@ -1,5 +1,6 @@
 'use strict';
-
+//создание данных
+//data.js
 var i;
 
 var getRandomNumber = function (min, max) {
@@ -71,6 +72,9 @@ var generateData = function (count) {
 
 var pinList = generateData(8);
 
+// создание пина
+// pin.js
+
 var similarListPin = document.querySelector('.map__pins');
 
 var renderPin = function (data) {
@@ -88,7 +92,8 @@ var renderPin = function (data) {
   return pin;
 };
 
-
+// отрисовка карточки
+// map.js
 var createCard = function (data) {
   var cardTemplate = document.querySelector('#card')
     .content
@@ -181,7 +186,8 @@ var createCard = function (data) {
 // var mapPins = document.querySelector('.map');
 // mapPins.appendChild(createCard(pinList[0]));
 
-
+// активация страницы по клику
+// map.js
 var mapFilter = document.querySelectorAll('.map__filter');
 for (i = 0; i < mapFilter.length; i++) {
   mapFilter[i].setAttribute('disabled', 'true');
@@ -240,6 +246,8 @@ mapPinMain.addEventListener('mousedown', function (evt) {
   }
 });
 
+// зактрытие карточки объявления
+// map.js
 var closeCard = function () {
   var oldCard = document.querySelector('.map__card');
   if (oldCard) {
@@ -247,6 +255,8 @@ var closeCard = function () {
   }
 };
 
+// валидация заполнения объявления
+// form.js
 var adTitleInput = document.querySelector('#title');
 
 adTitleInput.addEventListener('invalid', function () {
@@ -342,9 +352,9 @@ adTimeOut.addEventListener('change', function () {
   timeInTimeOut(adTimeOut, adTimeIn);
 });
 
+
 var adRooms = document.querySelector('#room_number');
 var adGuests = document.querySelector('#capacity');
-
 
 var validateRoomsAndGuestsAmount = function () {
   var rooms = parseInt(adRooms.value, 10);
