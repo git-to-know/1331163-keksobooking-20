@@ -1,7 +1,7 @@
 'use strict';
-//создание данных
-//data.js
-var i;
+// создание данных
+// data.js
+// var i;
 
 var getRandomNumber = function (min, max) {
   return Math.round(min + Math.random() * (max - min));
@@ -12,7 +12,7 @@ var photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.g
 var getRandomArrayItem = function (array) {
   var length = getRandomNumber(0, array.length);
   var result = [];
-  for (i = 0; i < length; i++) {
+  for (var i = 0; i < length; i++) {
     result.push(array[i]);
   }
   return result;
@@ -140,7 +140,7 @@ var createCard = function (data) {
   var popupFeatures = newCard.querySelector('.popup__features');
   popupFeatures.textContent = '';
   var featureTemplate = cardTemplate.querySelector('.popup__feature');
-  for (i = 0; i < data.offer.features.length; i++) {
+  for (var i = 0; i < data.offer.features.length; i++) {
     var feature = featureTemplate.cloneNode(true);
     feature.className = 'popup__feature popup__feature--' + data.offer.features[i];
     popupFeatures.appendChild(feature);
@@ -189,7 +189,7 @@ var createCard = function (data) {
 // активация страницы по клику
 // map.js
 var mapFilter = document.querySelectorAll('.map__filter');
-for (i = 0; i < mapFilter.length; i++) {
+for (var i = 0; i < mapFilter.length; i++) {
   mapFilter[i].setAttribute('disabled', 'true');
 }
 
@@ -201,7 +201,7 @@ for (i = 0; i < adFormFieldset.length; i++) {
 
 var mapPinMain = document.querySelector('.map__pin--main');
 var adressInput = adForm.querySelector('#address');
-adressInput.value = (mapPinMain.offsetLeft + mapPinMain.clientWidth / 2) + ' ' + (mapPinMain.offsetTop + mapPinMain.clientHeight / 2);
+adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight / 2));
 
 var pageActivate = function () {
   var mapBlock = document.querySelector('.map');
