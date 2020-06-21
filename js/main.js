@@ -36,8 +36,7 @@ var pinWidth = 50;
 var generateData = function (count) {
   var data = [];
 
-  count.forEach(function (item, index, data) {
-
+  for (var i = 0; i < count; i++) {
     var x = getRandomNumber(0, 1200);
     var y = getRandomNumber(130, 630);
 
@@ -46,16 +45,16 @@ var generateData = function (count) {
         avatar: 'img/avatars/user0' + getRandomNumber(1, 8) + '.png'
       },
       offer: {
-        'title': 'заголовок предложения' + index,
+        'title': 'заголовок предложения' + i,
         'address': x + ', ' + y,
-        'price': x + index,
+        'price': x + i,
         'type': type[getRandomNumber(0, 3)],
         'rooms': getRandomNumber(1, 10),
         'guests': getRandomNumber(1, 10),
         'checkin': time[getRandomNumber(0, time.length)],
         'checkout': time[getRandomNumber(0, time.length)],
         'features': getRandomArrayItem(featuresData),
-        'description': 'описание' + index,
+        'description': 'описание' + i,
         'photos': getRandomArrayItem(photos),
       },
       location: {
@@ -63,7 +62,7 @@ var generateData = function (count) {
         'y': y,
       }
     });
-  });
+  }
   return data;
 };
 
