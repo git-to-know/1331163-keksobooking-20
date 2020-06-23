@@ -48,4 +48,8 @@
       adressInput.value = (mapPinMain.offsetLeft + mapPinMain.clientWidth / 2) + ' ' + (mapPinMain.offsetTop + mapPinMain.clientHeight);
     }
   });
+
+  window.map = {
+    mapPinMain: mapPinMain
+  };
 })();
