@@ -25,9 +25,6 @@
     'bungalo': 'Бунгало'
   };
 
-  var pinHeight = 70;
-  var pinWidth = 50;
-
   var generateData = function (count) {
     var data = [];
 
@@ -68,8 +65,6 @@
 
   window.data = {
     typeRusNames: typeRusNames,
-    pinHeight: pinHeight,
-    pinWidth: pinWidth,
     pinList: pinList
   };
 })();

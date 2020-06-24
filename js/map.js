@@ -26,8 +26,7 @@
     // }
   };
 
-
-  mapPinMain.addEventListener('mousedown', function (evt) {
+  var mainPinClickHandler = function (evt) {
     if (evt.button === 0) {
       pageActivate();
       var fragment = document.createDocumentFragment();
@@ -46,6 +45,15 @@
       window.pin.similarListPin.appendChild(fragment);
 
       adressInput.value = (mapPinMain.offsetLeft + mapPinMain.clientWidth / 2) + ' ' + (mapPinMain.offsetTop + mapPinMain.clientHeight);
+
+      mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
     }
-  });
+  };
+
+  mapPinMain.addEventListener('mousedown', mainPinClickHandler);
+
+  window.map = {
+    mapPinMain: mapPinMain,
+    adressInput: adressInput
+  };
 })();
