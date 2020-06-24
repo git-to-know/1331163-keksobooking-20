@@ -21,26 +21,39 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
+      // console.log(window.map.mapPinMain.offsetTop - shift.y);
+      var newYCoord = window.map.mapPinMain.offsetTop - shift.y;
+      var newXCoord = window.map.mapPinMain.offsetLeft - shift.x;
 
-      window.map.mapPinMain.style.top = (window.map.mapPinMain.offsetTop - shift.y) + 'px';
-      window.map.mapPinMain.style.left = (window.map.mapPinMain.offsetLeft - shift.x) + 'px';
+      if (newYCoord < window.const.topBoard - window.map.mapPinMain.clientHeight) {
+        newYCoord = window.const.topBoard - window.map.mapPinMain.clientHeight;
+      } else if (newYCoord > window.const.bottomBoard - window.map.mapPinMain.clientHeight) {
+        newYCoord = window.const.bottomBoard - window.map.mapPinMain.clientHeight;
+      }
+      window.map.mapPinMain.style.top = newYCoord + 'px';
+
+      if (newXCoord < window.const.leftBoard) {
+        newXCoord = window.const.leftBoard;
+      } else if (newXCoord > window.const.rightBoard - window.map.mapPinMain.clientWidth) {
+        newXCoord = window.const.rightBoard - (window.map.mapPinMain.clientWidth);
+      }
+      window.map.mapPinMain.style.left = newXCoord + 'px';
+
+      window.map.adressInput.value = (newXCoord + (window.map.mapPinMain.clientWidth / 2)) + ' ' + (newYCoord + (window.map.mapPinMain.clientHeight));
     };
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
-      var shiftUp = {
-        x: startCoords.x - upEvt.clientX,
-        y: startCoords.y - upEvt.clientY
-      };
+      // var shiftUp = {
+      //   x: startCoords.x - upEvt.clientX,
+      //   y: startCoords.y - upEvt.clientY
+      // };
 
-      startCoords = {
-        x: upEvt.clientX,
-        y: upEvt.clientY
-      };
-
-      window.map.mapPinMain.style.top = (window.map.mapPinMain.offsetTop - shiftUp.y) + 'px';
-      window.map.mapPinMain.style.left = (window.map.mapPinMain.offsetLeft - shiftUp.x) + 'px';
+      // startCoords = {
+      //   x: upEvt.clientX,
+      //   y: upEvt.clientY
+      // };
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
