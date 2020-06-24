@@ -32,10 +32,10 @@
       }
       window.map.mapPinMain.style.top = newYCoord + 'px';
 
-      if (newXCoord < window.const.leftBoard) {
-        newXCoord = window.const.leftBoard;
-      } else if (newXCoord > window.const.rightBoard - window.map.mapPinMain.clientWidth) {
-        newXCoord = window.const.rightBoard - (window.map.mapPinMain.clientWidth);
+      if (newXCoord < window.const.leftBoard - (window.map.mapPinMain.clientWidth / 2)) {
+        newXCoord = window.const.leftBoard - (window.map.mapPinMain.clientWidth / 2);
+      } else if (newXCoord > window.const.rightBoard - (window.map.mapPinMain.clientWidth / 2)) {
+        newXCoord = window.const.rightBoard - (window.map.mapPinMain.clientWidth / 2);
       }
       window.map.mapPinMain.style.left = newXCoord + 'px';
 
