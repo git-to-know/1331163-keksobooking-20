@@ -15,9 +15,9 @@
 
   var featuresData = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
-  var time = ['12:00', '13:00', '14:00'];
+  var times = ['12:00', '13:00', '14:00'];
 
-  var type = ['palace', 'flat', 'house', 'bungalo'];
+  var types = ['palace', 'flat', 'house', 'bungalo'];
   var typeRusNames = {
     'palace': 'Дворец',
     'flat': 'Квартира',
@@ -40,11 +40,11 @@
           'title': 'заголовок предложения' + i,
           'address': x + ', ' + y,
           'price': x + i,
-          'type': type[window.utils.getRandomNumber(0, 3)],
+          'type': types[window.utils.getRandomNumber(0, 3)],
           'rooms': window.utils.getRandomNumber(1, 10),
           'guests': window.utils.getRandomNumber(1, 10),
-          'checkin': time[window.utils.getRandomNumber(0, time.length)],
-          'checkout': time[window.utils.getRandomNumber(0, time.length)],
+          'checkin': times[window.utils.getRandomNumber(0, times.length)],
+          'checkout': times[window.utils.getRandomNumber(0, times.length)],
           'features': getRandomArrayItem(featuresData),
           'description': 'описание' + i,
           'photos': getRandomArrayItem(photos),

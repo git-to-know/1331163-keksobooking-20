@@ -3,7 +3,6 @@
   window.map.mapPinMain.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
-
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
@@ -21,21 +20,21 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-      // console.log(window.map.mapPinMain.offsetTop - shift.y);
+
       var newYCoord = window.map.mapPinMain.offsetTop - shift.y;
       var newXCoord = window.map.mapPinMain.offsetLeft - shift.x;
 
-      if (newYCoord < window.const.topBoard - window.map.mapPinMain.clientHeight) {
-        newYCoord = window.const.topBoard - window.map.mapPinMain.clientHeight;
-      } else if (newYCoord > window.const.bottomBoard - window.map.mapPinMain.clientHeight) {
-        newYCoord = window.const.bottomBoard - window.map.mapPinMain.clientHeight;
+      if (newYCoord < window.const.TOP_BOARD - window.map.mapPinMain.clientHeight) {
+        newYCoord = window.const.TOP_BOARD - window.map.mapPinMain.clientHeight;
+      } else if (newYCoord > window.const.BOTTOM_BOARD - window.map.mapPinMain.clientHeight) {
+        newYCoord = window.const.BOTTOM_BOARD - window.map.mapPinMain.clientHeight;
       }
       window.map.mapPinMain.style.top = newYCoord + 'px';
 
-      if (newXCoord < window.const.leftBoard - (window.map.mapPinMain.clientWidth / 2)) {
-        newXCoord = window.const.leftBoard - (window.map.mapPinMain.clientWidth / 2);
-      } else if (newXCoord > window.const.rightBoard - (window.map.mapPinMain.clientWidth / 2)) {
-        newXCoord = window.const.rightBoard - (window.map.mapPinMain.clientWidth / 2);
+      if (newXCoord < window.const.LEFT_BOARD - (window.map.mapPinMain.clientWidth / 2)) {
+        newXCoord = window.const.LEFT_BOARD - (window.map.mapPinMain.clientWidth / 2);
+      } else if (newXCoord > window.const.RIGHT_BOARD - (window.map.mapPinMain.clientWidth / 2)) {
+        newXCoord = window.const.RIGHT_BOARD - (window.map.mapPinMain.clientWidth / 2);
       }
       window.map.mapPinMain.style.left = newXCoord + 'px';
 
@@ -44,16 +43,6 @@
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
-
-      // var shiftUp = {
-      //   x: startCoords.x - upEvt.clientX,
-      //   y: startCoords.y - upEvt.clientY
-      // };
-
-      // startCoords = {
-      //   x: upEvt.clientX,
-      //   y: upEvt.clientY
-      // };
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
