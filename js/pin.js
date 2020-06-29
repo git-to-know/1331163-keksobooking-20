@@ -14,7 +14,7 @@
 
     pinImg.src = data.author.avatar;
     pinImg.alt = data.offer.title;
-    pin.style = 'left: ' + (data.location.x - window.const.pinWidth / 2) + 'px; top: ' + (data.location.y - window.const.pinHeight) + 'px;';
+    pin.style = 'left: ' + (data.location.x - window.const.PIN_WIDTH / 2) + 'px; top: ' + (data.location.y - window.const.PIN_HEIGHT) + 'px;';
 
     return pin;
   };

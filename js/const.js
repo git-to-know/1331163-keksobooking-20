@@ -1,18 +1,22 @@
 'use strict';
 (function () {
-  var pinHeight = 70;
-  var pinWidth = 50;
-  var topBoard = 130;
-  var bottomBoard = 630;
-  var rightBoard = 1200;
-  var leftBoard = 0;
+  var PIN_HEIGHT = 70;
+  var PIN_WIDTH = 50;
+  var TOP_BOARD = 130;
+  var BOTTOM_BOARD = 630;
+  var RIGHT_BOARD = 1200;
+  var LEFT_BOARD = 0;
+  var LOAD_URL = 'https://javascript.pages.academy/keksobooking/data';
+  var UPLOAD_URL = 'https://javascript.pages.academy/keksobooking';
 
   window.const = {
-    pinHeight: pinHeight,
-    pinWidth: pinWidth,
-    topBoard: topBoard,
-    bottomBoard: bottomBoard,
-    rightBoard: rightBoard,
-    leftBoard: leftBoard
+    LOAD_URL: LOAD_URL,
+    UPLOAD_URL: UPLOAD_URL,
+    PIN_HEIGHT: PIN_HEIGHT,
+    PIN_WIDTH: PIN_WIDTH,
+    TOP_BOARD: TOP_BOARD,
+    BOTTOM_BOARD: BOTTOM_BOARD,
+    RIGHT_BOARD: RIGHT_BOARD,
+    LEFT_BOARD: LEFT_BOARD
   };
 })();
