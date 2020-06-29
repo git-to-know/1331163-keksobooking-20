@@ -33,12 +33,13 @@
   formLoad.addEventListener('submit', function (evt) {
     evt.preventDefault();
     window.upload(new FormData(formLoad), function () {
-      window.utils.pageDisActivate();
+      pageDisActivate();
       var map = document.querySelector('.map');
       var pins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
       if (pins.length !== 0) {
         pins.forEach(function (pin) {
           pin.remove();
+          window.card.closeCard();
         });
       }
     });
@@ -47,9 +48,7 @@
     evt.preventDefault();
   });
 
-
   window.utils = {
-    pageDisActivate: pageDisActivate,
     getRandomNumber: getRandomNumber,
     mapFilter: mapFilter,
     adForm: adForm,
