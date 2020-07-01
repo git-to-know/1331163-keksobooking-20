@@ -34,14 +34,16 @@
     evt.preventDefault();
     window.upload(new FormData(formLoad), function () {
       pageDisActivate();
+
       var map = document.querySelector('.map');
       var pins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
       if (pins.length !== 0) {
         pins.forEach(function (pin) {
           pin.remove();
-          window.card.closeCard();
         });
+        window.card.closeCard();
       }
+
     });
     window.map.mapPinMain.addEventListener('mousedown', window.map.mainPinClickHandler);
 
