@@ -127,6 +127,4 @@
   adRooms.addEventListener('change', validateRoomsAndGuestsAmount);
   adGuests.addEventListener('change', validateRoomsAndGuestsAmount);
 
-
-
 })();
