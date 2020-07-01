@@ -2,7 +2,6 @@
 (function () {
   var StatusCode = {
     OK: 200
-    // ERR: [400, 401, 404]
   };
 
   window.upload = function (data, onSuccess) {
@@ -81,10 +80,6 @@
 
     xhr.open('POST', window.const.UPLOAD_URL);
     xhr.send(data);
-
-    //
-
-    // document.addEventListener('keydown', onEscClickHandler);
   };
 
 })();
