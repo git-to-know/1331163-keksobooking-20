@@ -61,7 +61,7 @@
   });
 
   window.utils = {
-    // getRandomNumber: getRandomNumber,
+    closeCardAndPins: closeCardAndPins,
     mapFilter: mapFilter,
     adForm: adForm,
     adFormFieldset: adFormFieldset

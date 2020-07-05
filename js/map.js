@@ -2,6 +2,8 @@
 // map.js
 'use strict';
 (function () {
+  var MAX_SIMILAR_PIN_COUNT = 5;
+
   var mapPinMain = document.querySelector('.map__pin--main');
   var adressInput = window.utils.adForm.querySelector('#address');
   adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight / 2));
@@ -28,20 +30,18 @@
     if (evt.button === 0) {
       pageActivate();
       window.load(function (data) {
-        var fragment = document.createDocumentFragment();
-        data.forEach(function (item) {
-          if (item.offer) {
-            var newPin = window.pin.renderPin(item);
-            fragment.appendChild(newPin);
+        window.pin.data = data;
+        var counter = 0;
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].offer) {
+            window.pin.renderPin(data[i]);
+            counter++;
           }
 
-          newPin.addEventListener('click', function () {
-            var mapPins = document.querySelector('.map');
-            window.card.closeCard();
-            mapPins.appendChild(window.card.createCard(item));
-          });
-        });
-        window.pin.similarListPin.appendChild(fragment);
+          if (counter === MAX_SIMILAR_PIN_COUNT) {
+            break;
+          }
+        }
         mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
       });
       adressInput.value = (mapPinMain.offsetLeft + mapPinMain.clientWidth / 2) + ' ' + (mapPinMain.offsetTop + mapPinMain.clientHeight);
@@ -50,6 +50,7 @@
   mapPinMain.addEventListener('mousedown', mainPinClickHandler);
 
   window.map = {
+    MAX_SIMILAR_PIN_COUNT: MAX_SIMILAR_PIN_COUNT,
     mapPinMain: mapPinMain,
     adressInput: adressInput,
     mainPinClickHandler: mainPinClickHandler
