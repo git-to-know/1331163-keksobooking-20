@@ -27,22 +27,24 @@
     };
 
     var filterByType = function (data) {
-      if ((type.value === 'palace') || (type.value === 'flat') || (type.value === 'house') || (type.value === 'bungalo')) {
+      if (type.value !== 'any') {
         return data.offer.type === type.value;
+      } else {
+        return data;
       }
-      return data;
     };
 
     var filterByGuest = function (data) {
-      if ((guest.value === '2') || (guest.value === '1') || (guest.value === '0')) {
-        return data.offer.guests === guest.value;
+      if (guest.value !== 'any') {
+        return data.offer.guests === +guest.value;
+      } else {
+        return data;
       }
-      return data;
     };
 
     var filtrerByRoom = function (data) {
-      if ((room.value === '1') || (room.value === '2') || (room.value === '3')) {
-        return data.offer.rooms === room.value;
+      if (room.value !== 'any') {
+        return data.offer.rooms === +room.value;
       }
       return data;
     };
