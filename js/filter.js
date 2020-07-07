@@ -12,8 +12,6 @@
   var elevator = document.querySelector('#filter-elevator');
   var conditioner = document.querySelector('#filter-conditioner');
 
-  var DEBOUNCE_INTERVAL = 500;
-
 
   var updateAd = function () {
     var filterByPrice = function (data) {
@@ -69,9 +67,7 @@
   var mapFilters = document.querySelector('.map__filters');
   mapFilters.addEventListener('change', function () {
     window.utils.closeCardAndPins();
-    window.setTimeout(function () {
-      updateAd();
-    }, DEBOUNCE_INTERVAL);
+    updateAd();
   });
 
 })();
