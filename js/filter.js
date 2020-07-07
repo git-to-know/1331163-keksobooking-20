@@ -64,10 +64,11 @@
       window.pin.renderPin(item);
     });
   };
+
   var mapFilters = document.querySelector('.map__filters');
-  mapFilters.addEventListener('change', function () {
+  mapFilters.addEventListener('change', window.debounce(function () {
     window.utils.closeCardAndPins();
     updateAd();
-  });
+  }));
 
 })();
