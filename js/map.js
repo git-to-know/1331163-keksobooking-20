@@ -49,6 +49,16 @@
   };
   mapPinMain.addEventListener('mousedown', mainPinClickHandler);
 
+  var OnEnterClickHandler = function (evt) {
+    if (evt.key === 13) {
+      evt.preventDefault();
+      mainPinClickHandler();
+      mapPinMain.removeEventListener('keydown', OnEnterClickHandler);
+    }
+  };
+
+  mapPinMain.addEventListener('keydown', OnEnterClickHandler);
+
   window.map = {
     MAX_SIMILAR_PIN_COUNT: MAX_SIMILAR_PIN_COUNT,
     mapPinMain: mapPinMain,
