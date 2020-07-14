@@ -38,7 +38,7 @@
       }
       window.map.mapPinMain.style.left = newXCoord + 'px';
 
-      window.map.adressInput.value = (newXCoord + (window.map.mapPinMain.clientWidth / 2)) + ' ' + (newYCoord + (window.map.mapPinMain.clientHeight));
+      window.map.adressInput.value = Math.round(newXCoord + (window.map.mapPinMain.clientWidth / 2)) + ' ' + Math.round(newYCoord + (window.map.mapPinMain.clientHeight));
     };
 
     var onMouseUp = function (upEvt) {

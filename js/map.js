@@ -1,5 +1,4 @@
 // активация страницы по клику
-// map.js
 'use strict';
 (function () {
   var MAX_SIMILAR_PIN_COUNT = 5;
@@ -26,31 +25,29 @@
   };
 
 
-  var mainPinClickHandler = function (evt) {
-    if (evt.button === 0) {
-      pageActivate();
-      window.load(function (data) {
-        window.pin.data = data;
-        var counter = 0;
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].offer) {
-            window.pin.renderPin(data[i]);
-            counter++;
-          }
-
-          if (counter === MAX_SIMILAR_PIN_COUNT) {
-            break;
-          }
+  var mainPinClickHandler = function () {
+    pageActivate();
+    window.load(function (data) {
+      window.pin.data = data;
+      var counter = 0;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].offer) {
+          window.pin.renderPin(data[i]);
+          counter++;
         }
-        mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
-      });
-      adressInput.value = (mapPinMain.offsetLeft + mapPinMain.clientWidth / 2) + ' ' + (mapPinMain.offsetTop + mapPinMain.clientHeight);
-    }
+
+        if (counter === MAX_SIMILAR_PIN_COUNT) {
+          break;
+        }
+      }
+      mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
+    });
+    adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight));
   };
   mapPinMain.addEventListener('mousedown', mainPinClickHandler);
 
   var OnEnterClickHandler = function (evt) {
-    if (evt.key === 13) {
+    if (evt.keyCode === 13) {
       evt.preventDefault();
       mainPinClickHandler();
       mapPinMain.removeEventListener('keydown', OnEnterClickHandler);

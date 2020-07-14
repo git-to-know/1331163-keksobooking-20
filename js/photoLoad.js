@@ -42,7 +42,6 @@
 
   placePhotoFileChooser.addEventListener('change', function () {
     placePhotoCreate();
-    // photoLoad();
   });
 })();
 

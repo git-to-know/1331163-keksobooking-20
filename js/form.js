@@ -1,5 +1,4 @@
 // валидация заполнения объявления
-// form.js
 'use strict';
 (function () {
   var adTitleInput = document.querySelector('#title');
@@ -79,7 +78,7 @@
   var adTimeIn = document.querySelector('#timein');
   var adTimeOut = document.querySelector('#timeout');
 
-  var timeInTimeOut = function (select1, select2) {
+  var timeInTimeOutVerify = function (select1, select2) {
     if (select1.value === '12:00') {
       select2.value = '12:00';
     } else if (select1.value === '13:00') {
@@ -90,11 +89,11 @@
   };
 
   adTimeIn.addEventListener('change', function () {
-    timeInTimeOut(adTimeIn, adTimeOut);
+    timeInTimeOutVerify(adTimeIn, adTimeOut);
   });
 
   adTimeOut.addEventListener('change', function () {
-    timeInTimeOut(adTimeOut, adTimeIn);
+    timeInTimeOutVerify(adTimeOut, adTimeIn);
   });
 
 

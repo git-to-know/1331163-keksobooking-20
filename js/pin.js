@@ -1,5 +1,4 @@
 // создание пина
-// pin.js
 'use strict';
 (function () {
   var similarListPin = document.querySelector('.map__pins');

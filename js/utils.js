@@ -1,13 +1,6 @@
-// получение рандомного числе
-// utils.js
 'use strict';
 (function () {
-  // var getRandomNumber = function (min, max) {
-  //   return Math.round(min + Math.random() * (max - min));
-  // };
-
-  // неактивное состояне страницы
-  // utils.js
+  // неактивное состояние страницы
   var mapFilter = document.querySelectorAll('.map__filter');
   var adForm = document.querySelector('.ad-form');
   var adFormFieldset = adForm.querySelectorAll('fieldset');

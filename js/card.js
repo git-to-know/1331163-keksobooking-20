@@ -1,5 +1,4 @@
 // отрисовка карточки
-// card.js
 'use strict';
 (function () {
   var createCard = function (data) {
@@ -27,8 +26,14 @@
       popupPrice.style = 'display: none';
     }
 
+    var typeRusNames = {
+      'palace': 'Дворец',
+      'flat': 'Квартира',
+      'house': 'Дом',
+      'bungalo': 'Бунгало'
+    };
     var popupType = newCard.querySelector('.popup__type');
-    popupType.textContent = window.data.typeRusNames[data.offer.type];
+    popupType.textContent = typeRusNames[data.offer.type];
     if (data.offer.type === '') {
       popupType.style = 'display: none';
     }
@@ -92,7 +97,6 @@
   };
 
   // зактрытие карточки объявления
-  // card.js
   var closeCard = function () {
     var oldCard = document.querySelector('.map__card');
     if (oldCard) {
