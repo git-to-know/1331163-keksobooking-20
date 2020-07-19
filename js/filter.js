@@ -1,5 +1,11 @@
 'use strict';
 (function () {
+  var LOW_PRICE = 'low';
+  var MIDDLE_PRICE = 'middle';
+  var HIGH_PRICE = 'high';
+  var HIGH_VALUE = 50000;
+  var LOW_VALUE = 10000;
+  var ANY_VALUE = 'any';
 
   var type = document.querySelector('#housing-type');
   var price = document.querySelector('#housing-price');
@@ -16,26 +22,22 @@
   var updateAd = function () {
     var filterByPrice = function (data) {
       switch (price.value) {
-        case 'middle':
-          return data.offer.price >= 10000 && data.offer.price <= 50000;
-        case 'low':
-          return data.offer.price < 10000;
-        case 'high':
-          return data.offer.price > 50000;
+        case MIDDLE_PRICE:
+          return data.offer.price >= LOW_VALUE && data.offer.price <= HIGH_VALUE;
+        case LOW_PRICE:
+          return data.offer.price < LOW_VALUE;
+        case HIGH_PRICE:
+          return data.offer.price > HIGH_VALUE;
         default: return data;
       }
     };
 
     var filterByType = function (data) {
-      if (type.value !== 'any') {
-        return data.offer.type === type.value;
-      } else {
-        return data;
-      }
+      return type.value === ANY_VALUE || data.offer.type === type.value;
     };
 
     var filterByGuest = function (data) {
-      if (guest.value !== 'any') {
+      if (guest.value !== ANY_VALUE) {
         return data.offer.guests === +guest.value;
       } else {
         return data;
@@ -43,17 +45,14 @@
     };
 
     var filtrerByRoom = function (data) {
-      if (room.value !== 'any') {
+      if (room.value !== ANY_VALUE) {
         return data.offer.rooms === +room.value;
       }
       return data;
     };
 
     var filterByFeature = function (data, feature) {
-      if (feature.checked) {
-        return data.offer.features.includes(feature.value);
-      }
-      return true;
+      return feature.checked ? data.offer.features.includes(feature.value) : true;
     };
 
     var filtredData = window.pin.data.filter(function (data) {

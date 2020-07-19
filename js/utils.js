@@ -4,6 +4,9 @@
   var mapFilter = document.querySelectorAll('.map__filter');
   var adForm = document.querySelector('.ad-form');
   var adFormFieldset = adForm.querySelectorAll('fieldset');
+  var startXCord = Math.round(window.const.RIGHT_BOARD / 2);
+  var startYCord = Math.round(window.const.BOTTOM_BOARD / 2);
+
 
   var pageDisActivate = function () {
     adForm.reset();
@@ -20,7 +23,9 @@
     var adBlock = document.querySelector('.ad-form');
     adBlock.classList.add('ad-form--disabled');
 
-    window.map.adressInput.value = (Math.round(window.map.mapPinMain.offsetLeft + window.map.mapPinMain.clientWidth / 2)) + ' ' + (Math.round(window.map.mapPinMain.offsetTop + window.map.mapPinMain.clientHeight / 2));
+    // window.map.adressInput.value = (Math.round(window.map.mapPinMain.offsetLeft + window.map.mapPinMain.clientWidth / 2)) + ' ' + (Math.round(window.map.mapPinMain.offsetTop + window.map.mapPinMain.clientHeight / 2));
+    window.map.adressInput.value = startXCord + ' ' + startYCord;
+    window.map.mapPinMain.style = 'left: ' + startXCord + 'px; top: ' + startYCord + 'px;';
   };
 
   var closeCardAndPins = function () {
@@ -30,7 +35,7 @@
       pins.forEach(function (pin) {
         pin.remove();
       });
-      window.card.closeCard();
+      window.card.cardCloseHandler();
     }
   };
 
@@ -57,6 +62,8 @@
     closeCardAndPins: closeCardAndPins,
     mapFilter: mapFilter,
     adForm: adForm,
-    adFormFieldset: adFormFieldset
+    adFormFieldset: adFormFieldset,
+    startXCord: startXCord,
+    startYCord: startYCord
   };
 })();

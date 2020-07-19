@@ -15,12 +15,16 @@
       if (xhr.status === StatusCode.OK) {
         onSuccess(xhr.response);
       } else {
-        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        window.upload.uploadERROR();
+        window.upload.errorText.innerHTML = 'Ошибка загрузки данных ' + '<br>' + xhr.status + ' ' + xhr.statusText;
       }
     });
+
     xhr.addEventListener('error', function () {
       onError('Произошла ошибка соединения');
+
     });
+
     xhr.addEventListener('timeout', function () {
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });

@@ -4,12 +4,17 @@
     OK: 200
   };
 
+  var mainBlock = document.querySelector('main');
+  var errorMessageTemplate = document.querySelector('#error');
+  var errorMessage = errorMessageTemplate.cloneNode(true)
+    .content
+    .querySelector('.error');
+  var errorText = errorMessage.querySelector('p');
+
+
   window.upload = function (data, onSuccess) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'multipart/form-data';
-
-    var mainBlock = document.querySelector('main');
-
     var uploadOnSuccess = function () {
       var successMessageTemplate = document.querySelector('#success');
       var successMessage = successMessageTemplate.cloneNode(true)
@@ -17,52 +22,22 @@
         .querySelector('.success');
       mainBlock.appendChild(successMessage);
 
-      successMessage.addEventListener('click', closeSuccessMessage);
+      uploadERROR();
 
-      var successOnEscClickHandler = function (evt) {
-        if (evt.key === 'Escape') {
+      successMessage.addEventListener('click', successMessageCloseHandler);
+
+      var successEscClickHandler = function (evt) {
+        if (evt.key === window.const.ESC_BUTTON) {
           evt.preventDefault();
-          closeSuccessMessage();
-          document.removeEventListener('keydown', successOnEscClickHandler);
+          successMessageCloseHandler();
+          document.removeEventListener('keydown', successEscClickHandler);
         }
       };
 
-      document.addEventListener('keydown', successOnEscClickHandler);
+      document.addEventListener('keydown', successEscClickHandler);
     };
 
-    var uploadERROR = function () {
-      var errorMessageTemplate = document.querySelector('#error');
-      var errorMessage = errorMessageTemplate.cloneNode(true)
-        .content
-        .querySelector('.error');
-      mainBlock.appendChild(errorMessage);
-      var errorText = errorMessage.querySelector('p');
-      errorText.innerHTML = 'Ошибка загрузки объявления ' + '<br>' + xhr.status + ' ' + xhr.statusText;
-
-      errorMessage.addEventListener('click', closeErrMessage);
-
-      var errCloseButton = errorMessage.querySelector('.error__button');
-      errCloseButton.addEventListener('click', closeErrMessage);
-
-      var errOnEscClickHandler = function (evt) {
-        if (evt.key === 'Escape') {
-          evt.preventDefault();
-          closeErrMessage();
-          document.removeEventListener('keydown', errOnEscClickHandler);
-        }
-      };
-
-      document.addEventListener('keydown', errOnEscClickHandler);
-    };
-
-    var closeErrMessage = function () {
-      var errMessage = document.querySelector('.error');
-      if (errMessage) {
-        errMessage.remove();
-      }
-    };
-
-    var closeSuccessMessage = function () {
+    var successMessageCloseHandler = function () {
       var successMessage = document.querySelector('.success');
       if (successMessage) {
         successMessage.remove();
@@ -75,11 +50,41 @@
         uploadOnSuccess();
       } else {
         uploadERROR();
+        errorText.innerHTML = 'Ошибка загрузки объявления ' + '<br>' + xhr.status + ' ' + xhr.statusText;
       }
     });
 
     xhr.open('POST', window.const.UPLOAD_URL);
     xhr.send(data);
+  };
+
+  var uploadERROR = function () {
+    mainBlock.appendChild(errorMessage);
+    errorMessage.addEventListener('click', errMessageCloseHandler);
+
+    var errCloseButton = errorMessage.querySelector('.error__button');
+    errCloseButton.addEventListener('click', errMessageCloseHandler);
+
+    var errEscClickHandler = function (evt) {
+      if (evt.key === window.const.ESC_BUTTON) {
+        evt.preventDefault();
+        errMessageCloseHandler();
+        document.removeEventListener('keydown', errEscClickHandler);
+      }
+    };
+    document.addEventListener('keydown', errEscClickHandler);
+  };
+
+  var errMessageCloseHandler = function () {
+    var errMessage = document.querySelector('.error');
+    if (errMessage) {
+      errMessage.remove();
+    }
+  };
+
+  window.upload = {
+    uploadERROR: uploadERROR,
+    errorText: errorText
   };
 
 })();

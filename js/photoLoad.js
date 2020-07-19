@@ -2,6 +2,11 @@
 (function () {
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
+  var PhotoSize = {
+    WIDTH: 70,
+    HEIGHT: 70,
+  };
+
   var avatarFileChooser = document.querySelector('.ad-form__field input[type=file]');
   var avatarPreview = document.querySelector('.ad-form-header__preview img');
   var placePhotoFileChooser = document.querySelector('.ad-form__upload input[type=file]');
@@ -30,8 +35,8 @@
   var placePhotoCreate = function () {
     var placePhoto = document.createElement('img');
     placePhoto.alt = 'Фото жилья';
-    placePhoto.width = 70;
-    placePhoto.height = 70;
+    placePhoto.width = PhotoSize.WIDTH;
+    placePhoto.height = PhotoSize.HEIGHT;
     placePhotoPreview.appendChild(placePhoto);
     photoLoad(placePhotoFileChooser, placePhoto);
   };

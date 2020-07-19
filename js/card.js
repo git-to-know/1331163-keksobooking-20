@@ -1,6 +1,8 @@
 // отрисовка карточки
 'use strict';
 (function () {
+  var openedCard;
+
   var createCard = function (data) {
     var cardTemplate = document.querySelector('#card')
       .content
@@ -40,13 +42,13 @@
 
     var popupGuestsRooms = newCard.querySelector('.popup__text--capacity');
     popupGuestsRooms.textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
-    if (data.offer.rooms === '' | data.offer.guests === '') {
+    if (data.offer.rooms === '' || data.offer.guests === '') {
       popupGuestsRooms.style = 'display: none';
     }
 
     var popupCheckInCheckOut = newCard.querySelector('.popup__text--time');
     popupCheckInCheckOut.textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout + '.';
-    if (data.offer.checkin === '' | data.offer.checkout === '') {
+    if (data.offer.checkin === '' || data.offer.checkout === '') {
       popupCheckInCheckOut.style = 'display: none';
     }
 
@@ -81,32 +83,33 @@
     }
 
     var popupCloseButton = newCard.querySelector('.popup__close');
-    popupCloseButton.addEventListener('click', closeCard);
+    popupCloseButton.addEventListener('click', cardCloseHandler);
 
-    var onEscClickHandler = function (evt) {
-      if (evt.key === 'Escape') {
+    var escClickHandler = function (evt) {
+      if (evt.key === window.const.ESC_BUTTON) {
         evt.preventDefault();
-        closeCard();
-        document.removeEventListener('keydown', onEscClickHandler);
+        cardCloseHandler();
+        document.removeEventListener('keydown', escClickHandler);
       }
     };
 
-    document.addEventListener('keydown', onEscClickHandler);
+    document.addEventListener('keydown', escClickHandler);
+
+    openedCard = newCard;
 
     return newCard;
   };
 
   // зактрытие карточки объявления
-  var closeCard = function () {
-    var oldCard = document.querySelector('.map__card');
-    if (oldCard) {
-      oldCard.remove();
+  var cardCloseHandler = function () {
+    if (openedCard) {
+      openedCard.remove();
     }
   };
 
   window.card = {
     createCard: createCard,
-    closeCard: closeCard
+    cardCloseHandler: cardCloseHandler
   };
 })();
 

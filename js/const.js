@@ -9,6 +9,8 @@
   var LOAD_URL = 'https://javascript.pages.academy/keksobooking/data';
   var UPLOAD_URL = 'https://javascript.pages.academy/keksobooking';
 
+  var ESC_BUTTON = 'Escape';
+
   window.const = {
     LOAD_URL: LOAD_URL,
     UPLOAD_URL: UPLOAD_URL,
@@ -17,6 +19,7 @@
     TOP_BOARD: TOP_BOARD,
     BOTTOM_BOARD: BOTTOM_BOARD,
     RIGHT_BOARD: RIGHT_BOARD,
-    LEFT_BOARD: LEFT_BOARD
+    LEFT_BOARD: LEFT_BOARD,
+    ESC_BUTTON: ESC_BUTTON
   };
 })();

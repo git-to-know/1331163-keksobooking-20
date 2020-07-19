@@ -42,19 +42,20 @@
       }
       mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
     });
-    adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight));
+    // adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight));
+    adressInput.value = window.utils.startXCord + ' ' + window.utils.startYCord;
   };
   mapPinMain.addEventListener('mousedown', mainPinClickHandler);
 
-  var OnEnterClickHandler = function (evt) {
+  var enterClickHandler = function (evt) {
     if (evt.keyCode === 13) {
       evt.preventDefault();
       mainPinClickHandler();
-      mapPinMain.removeEventListener('keydown', OnEnterClickHandler);
+      mapPinMain.removeEventListener('keydown', enterClickHandler);
     }
   };
 
-  mapPinMain.addEventListener('keydown', OnEnterClickHandler);
+  mapPinMain.addEventListener('keydown', enterClickHandler);
 
   window.map = {
     MAX_SIMILAR_PIN_COUNT: MAX_SIMILAR_PIN_COUNT,

@@ -21,7 +21,7 @@
     var newPin = window.pin.createPin(data);
     newPin.addEventListener('click', function () {
       var mapPins = document.querySelector('.map');
-      window.card.closeCard();
+      window.card.cardCloseHandler();
       mapPins.appendChild(window.card.createCard(data));
     });
     window.pin.similarListPin.appendChild(newPin);
