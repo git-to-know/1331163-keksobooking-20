@@ -48,5 +48,11 @@
   placePhotoFileChooser.addEventListener('change', function () {
     placePhotoCreate();
   });
+
+  window.photoLoad = {
+    avatarPreview: avatarPreview,
+    placePhotoPreview: placePhotoPreview,
+    placePhotoCreate: placePhotoCreate
+  };
 })();
 

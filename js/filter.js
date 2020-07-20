@@ -44,7 +44,7 @@
       }
     };
 
-    var filtrerByRoom = function (data) {
+    var filterByRoom = function (data) {
       if (room.value !== ANY_VALUE) {
         return data.offer.rooms === +room.value;
       }
@@ -56,7 +56,7 @@
     };
 
     var filtredData = window.pin.data.filter(function (data) {
-      return filterByType(data) && filterByPrice(data) && filterByGuest(data) && filtrerByRoom(data) && filterByFeature(data, wifi) && filterByFeature(data, parking) && filterByFeature(data, dishwasher) && filterByFeature(data, washer) && filterByFeature(data, elevator) && filterByFeature(data, conditioner);
+      return filterByType(data) && filterByPrice(data) && filterByGuest(data) && filterByRoom(data) && filterByFeature(data, wifi) && filterByFeature(data, parking) && filterByFeature(data, dishwasher) && filterByFeature(data, washer) && filterByFeature(data, elevator) && filterByFeature(data, conditioner);
     }).slice(0, window.map.MAX_SIMILAR_PIN_COUNT);
 
     filtredData.forEach(function (item) {

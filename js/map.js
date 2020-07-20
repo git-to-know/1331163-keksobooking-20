@@ -5,7 +5,7 @@
 
   var mapPinMain = document.querySelector('.map__pin--main');
   var adressInput = window.utils.adForm.querySelector('#address');
-  adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight / 2));
+  adressInput.value = window.utils.startXCord + ' ' + window.utils.startYCord;
 
   var pageActivate = function () {
 
@@ -15,13 +15,13 @@
     var adBlock = document.querySelector('.ad-form');
     adBlock.classList.remove('ad-form--disabled');
 
-    for (var i = 0; i < window.utils.adFormFieldset.length; i++) {
-      window.utils.adFormFieldset[i].removeAttribute('disabled');
-    }
+    window.utils.adFormFieldset.forEach(function (item) {
+      item.removeAttribute('disabled');
+    });
 
-    for (i = 0; i < window.utils.mapFilter.length; i++) {
-      window.utils.mapFilter[i].removeAttribute('disabled');
-    }
+    window.utils.mapFilter.forEach(function (item) {
+      item.removeAttribute('disabled');
+    });
   };
 
 
@@ -42,8 +42,7 @@
       }
       mapPinMain.removeEventListener('mousedown', mainPinClickHandler);
     });
-    // adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight));
-    adressInput.value = window.utils.startXCord + ' ' + window.utils.startYCord;
+    adressInput.value = (Math.round(mapPinMain.offsetLeft + mapPinMain.clientWidth / 2)) + ' ' + (Math.round(mapPinMain.offsetTop + mapPinMain.clientHeight));
   };
   mapPinMain.addEventListener('mousedown', mainPinClickHandler);
 

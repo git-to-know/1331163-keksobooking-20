@@ -4,28 +4,36 @@
   var mapFilter = document.querySelectorAll('.map__filter');
   var adForm = document.querySelector('.ad-form');
   var adFormFieldset = adForm.querySelectorAll('fieldset');
-  var startXCord = Math.round(window.const.RIGHT_BOARD / 2);
-  var startYCord = Math.round(window.const.BOTTOM_BOARD / 2);
+  var startXCord = 570;
+  var startYCord = 375;
 
 
   var pageDisActivate = function () {
     adForm.reset();
-    for (var i = 0; i < mapFilter.length; i++) {
-      mapFilter[i].setAttribute('disabled', 'true');
-    }
 
-    for (i = 0; i < adFormFieldset.length; i++) {
-      adFormFieldset[i].setAttribute('disabled', 'true');
-    }
+    mapFilter.forEach(function (item) {
+      item.setAttribute('disabled', 'true');
+    });
+
+    adFormFieldset.forEach(function (item) {
+      item.setAttribute('disabled', 'true');
+    });
+
     var mapBlock = document.querySelector('.map');
     mapBlock.classList.add('map--faded');
 
     var adBlock = document.querySelector('.ad-form');
     adBlock.classList.add('ad-form--disabled');
 
-    // window.map.adressInput.value = (Math.round(window.map.mapPinMain.offsetLeft + window.map.mapPinMain.clientWidth / 2)) + ' ' + (Math.round(window.map.mapPinMain.offsetTop + window.map.mapPinMain.clientHeight / 2));
     window.map.adressInput.value = startXCord + ' ' + startYCord;
     window.map.mapPinMain.style = 'left: ' + startXCord + 'px; top: ' + startYCord + 'px;';
+
+    window.photoLoad.avatarPreview.src = 'img/muffin-grey.svg';
+
+    var placePhotoList = document.querySelectorAll('.ad-form__photo img');
+    placePhotoList.forEach(function (item) {
+      window.photoLoad.placePhotoPreview.removeChild(item);
+    });
   };
 
   var closeCardAndPins = function () {

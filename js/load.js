@@ -15,8 +15,8 @@
       if (xhr.status === StatusCode.OK) {
         onSuccess(xhr.response);
       } else {
-        window.upload.uploadERROR();
-        window.upload.errorText.innerHTML = 'Ошибка загрузки данных ' + '<br>' + xhr.status + ' ' + xhr.statusText;
+        window.popup.uploadError();
+        window.popup.errorText.innerHTML = 'Ошибка загрузки данных ' + '<br>' + xhr.status + ' ' + xhr.statusText;
       }
     });
 
