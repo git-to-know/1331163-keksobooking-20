@@ -15,15 +15,16 @@
       if (xhr.status === StatusCode.OK) {
         onSuccess(xhr.response);
       } else {
-        window.popup.uploadError();
-        window.popup.errorText.innerHTML = 'Ошибка загрузки данных ' + '<br>' + xhr.status + ' ' + xhr.statusText;
+        onErrorMessage();
       }
     });
 
-    xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+    var onErrorMessage = function () {
+      window.loadMessage.uploadError();
+      window.loadMessage.errorText.innerHTML = 'Ошибка загрузки данных ' + '<br>' + xhr.status + ' ' + xhr.statusText;
+    };
 
-    });
+    xhr.addEventListener('error', onErrorMessage);
 
     xhr.addEventListener('timeout', function () {
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');

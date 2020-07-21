@@ -58,7 +58,7 @@
     }
   };
 
-  window.popup = {
+  window.loadMessage = {
     uploadOnSuccess: uploadOnSuccess,
     uploadError: uploadError,
     errorText: errorText
